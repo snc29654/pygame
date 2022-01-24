@@ -253,31 +253,34 @@ def image_view():
 
 
 
-for n in filenames:
-    pass    
 
-### モジュール初期化
-pygame.init()
-### 画面設定
-surface = pygame.display.set_mode((WIDTH,HEIGHT))
-### 写真読み込み
-img_org = pygame.image.load(n)
-### 初期スケール設定
-scale = HEIGHT/img_org.get_height()
-### 写真表示
-image_view()
-thread1 = threading.Thread(target=test_thread) 
-thread1.start()
-### 無限ループ
-while True:
+def view_image():
+    ### モジュール初期化
+    ### 画面設定
+    ### 写真表示
     image_view()
-    for event in pygame.event.get():
-        if event.type == KEYDOWN:
-            if event.key == K_ESCAPE:   # 終了
-                break
-    else:
-        continue
-    ### whileループ終了
-    break
-### 終了処理
-pygame.quit()
+    thread1 = threading.Thread(target=test_thread) 
+    thread1.start()
+    ### 無限ループ
+    while True:
+        image_view()
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if event.key == K_ESCAPE:   # 終了
+                    break
+        else:
+            continue
+        ### whileループ終了
+        break
+    ### 終了処理
+    pygame.quit()
+    
+    
+pygame.init()
+for n in filenames:
+    surface = pygame.display.set_mode((WIDTH,HEIGHT))
+    ### 写真読み込み
+    img_org = pygame.image.load(n)
+    ### 初期スケール設定
+    scale = HEIGHT/img_org.get_height()
+    view_image()    
