@@ -18,15 +18,45 @@ def main():
     y = 30
     x2=300
     y2 =400
+
+    x3=300
+    y3 =400
+
     stop=0
     hit=0
     going = True
     state = 0
     while going:
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_LEFT]:
+            x3=x3-10        
+        if pressed[pygame.K_RIGHT]:
+            x3=x3+10        
+
+
         for event in pygame.event.get():
             
             if event.type == pygame.QUIT:
                 going = False
+
+
+
+
+
+            if event.type == KEYDOWN:
+                if event.key == K_LEFT:
+                    x3=x3-10        
+                if event.key == K_RIGHT:
+                    x3=x3+10        
+                if event.key == K_SPACE:
+                    y2=400
+                    stop=0
+
+
+
+
+
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if stop_button.collidepoint(event.pos):
                     stop=1
@@ -36,7 +66,7 @@ def main():
                     y2=400
                     stop=0
 
-        if(((x2>(x-10))and(x2<(x+10)))
+        if(((x3>(x-10))and(x3<(x+10)))
          and((y2>(y-10))and(y2<(y+10)))):
             print("hit")
             hit=1
@@ -60,7 +90,12 @@ def main():
                     state=0    
                     
         pygame.draw.circle(main_surface, (0,0,255), (x, y), 20)
-        pygame.draw.circle(main_surface, (255,0,255), (x2, y2), 20)
+        pygame.draw.circle(main_surface, (0,0,0), (x3, y2), 20)
+
+        pygame.draw.circle(main_surface, (255,0,255), (x3, y3), 20)
+
+
+
         main_surface.blit(text1, (40, 45))
         main_surface.blit(text2, (40,145))
         main_surface.blit(text3, (40,245))
