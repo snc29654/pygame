@@ -92,9 +92,9 @@ def main():
         pygame.draw.circle(main_surface, (0,0,255), (x, y), 20)
         pygame.draw.circle(main_surface, (0,0,0), (x3, y2), 20)
 
-        pygame.draw.circle(main_surface, (255,0,255), (x3, y3), 20)
+        #pygame.draw.circle(main_surface, (255,0,255), (x3, y3), 20)
 
-
+        pygame.draw.rect(main_surface, (255,0,255), (x3, y3,50,20))
 
         main_surface.blit(text1, (40, 45))
         main_surface.blit(text2, (40,145))
