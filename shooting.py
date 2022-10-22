@@ -26,6 +26,7 @@ def main():
     bx3=300
     y3 =400
 
+    hit_count=0
     stop=0
     hit=0
     going = True
@@ -129,8 +130,10 @@ def main():
         main_surface.blit(text3, (40,245))
         main_surface.blit(text4, (40,430))
         if(hit==1):
-            main_surface.blit(texthit, (200,45))
-            stop=1
+            hit_count+=1
+            hit=0
+        texthit = font.render("hit count="+str(hit_count), True, (0,0,0))
+        main_surface.blit(texthit, (200,45))
         pygame.display.update()
         clock.tick(50)
     pygame.quit()
