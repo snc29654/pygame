@@ -75,17 +75,17 @@ def main():
                     by0=400
                     stop=0
 
-        if(((x3>(x-10))and(x3<(x+10)))
+        if(((bx3>(x-10))and(bx3<(x+10)))
          and((by0>(y-10))and(by0<(y+10)))):
             print("hit")
             hit=1
 
-        if(((x3>(x-10))and(x3<(x+10)))
+        if(((bx3>(x-10))and(bx3<(x+10)))
          and((by1>(y-10))and(by1<(y+10)))):
             print("hit")
             hit=1
 
-        if(((x3>(x-10))and(x3<(x+10)))
+        if(((bx3>(x-10))and(bx3<(x+10)))
          and((by2>(y-10))and(by2<(y+10)))):
             print("hit")
             hit=1
