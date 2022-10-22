@@ -22,6 +22,7 @@ def main():
     by2 =400
 
     x3=300
+    bx3=300
     y3 =400
 
     stop=0
@@ -49,6 +50,7 @@ def main():
                 if event.key == K_RIGHT:
                     x3=x3+10        
                 if event.key == K_SPACE:
+                    bx3=x3
                     if(bstate==0):
                         by0=400
                         bstate=1
@@ -113,9 +115,9 @@ def main():
                     
         pygame.draw.circle(main_surface, (0,0,255), (x, y), 20)
 
-        pygame.draw.circle(main_surface, (0,0,0), (x3, by0), 10)
-        pygame.draw.circle(main_surface, (0,255,0), (x3, by1), 10)
-        pygame.draw.circle(main_surface, (0,0,255), (x3, by2), 10)
+        pygame.draw.circle(main_surface, (0,0,0), (bx3, by0), 10)
+        pygame.draw.circle(main_surface, (0,255,0), (bx3, by1), 10)
+        pygame.draw.circle(main_surface, (0,0,255), (bx3, by2), 10)
 
         #pygame.draw.circle(main_surface, (255,0,255), (x3, y3), 20)
 
