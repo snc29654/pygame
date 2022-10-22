@@ -17,7 +17,8 @@ def main():
     x=150
     y = 30
     x2=300
-    y2 =400
+    by0 =400
+    by1 =400
 
     x3=300
     y3 =400
@@ -26,6 +27,7 @@ def main():
     hit=0
     going = True
     state = 0
+    bstate = 0
     while going:
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_LEFT]:
@@ -40,21 +42,21 @@ def main():
                 going = False
 
 
-
-
-
             if event.type == KEYDOWN:
                 if event.key == K_LEFT:
                     x3=x3-10        
                 if event.key == K_RIGHT:
                     x3=x3+10        
                 if event.key == K_SPACE:
-                    y2=400
+                    if(bstate==0):
+                        by0=400
+                        bstate=1
+                    else:
+                        by1=400
+                        bstate=0
+                        
                     stop=0
-
-
-
-
+                    print(bstate,by0,by1)
 
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -63,20 +65,28 @@ def main():
                 if start_button.collidepoint(event.pos):
                     stop=0
                 if reset_button.collidepoint(event.pos):
-                    y2=400
+                    by0=400
                     stop=0
 
         if(((x3>(x-10))and(x3<(x+10)))
-         and((y2>(y-10))and(y2<(y+10)))):
+         and((by0>(y-10))and(by0<(y+10)))):
             print("hit")
             hit=1
 
+        if(((x3>(x-10))and(x3<(x+10)))
+         and((by1>(y-10))and(by1<(y+10)))):
+            print("hit")
+            hit=1
 
         main_surface.fill((220, 220, 220))
         pygame.draw.rect(main_surface, (255, 0, 0), stop_button)
         pygame.draw.rect(main_surface, (255, 255, 0), start_button)
         pygame.draw.rect(main_surface, (0, 0, 255), reset_button)
-        y2 -=10
+
+        by0 -=10
+        by1 -=10
+
+
         if(stop==1):
             pass
         else: 
@@ -90,7 +100,9 @@ def main():
                     state=0    
                     
         pygame.draw.circle(main_surface, (0,0,255), (x, y), 20)
-        pygame.draw.circle(main_surface, (0,0,0), (x3, y2), 20)
+
+        pygame.draw.circle(main_surface, (0,0,0), (x3, by0), 20)
+        pygame.draw.circle(main_surface, (0,255,0), (x3, by1), 20)
 
         #pygame.draw.circle(main_surface, (255,0,255), (x3, y3), 20)
 
