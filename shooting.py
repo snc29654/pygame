@@ -13,6 +13,7 @@ def main():
     text1 = font.render("STOP", True, (0,0,0))
     text2 = font.render("START", True, (0,0,0))
     text3 = font.render("SHOOT", True, (0,0,0))
+    text4 = font.render("CURSOL:SHOOTER MOVE /  SPACE ball start   ", True, (0,0,0))
     texthit = font.render("HIT!", True, (0,0,0))
     x=150
     y = 30
@@ -126,6 +127,7 @@ def main():
         main_surface.blit(text1, (40, 45))
         main_surface.blit(text2, (40,145))
         main_surface.blit(text3, (40,245))
+        main_surface.blit(text4, (40,430))
         if(hit==1):
             main_surface.blit(texthit, (200,45))
             stop=1
