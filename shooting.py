@@ -120,11 +120,6 @@ def main():
         for i in range(10):
             pygame.draw.circle(main_surface, (0,0,0), (bxt[i], byt[i]), 10)
             
-        """
-        pygame.draw.circle(main_surface, (0,0,0), (bx30, by0), 10)
-        pygame.draw.circle(main_surface, (0,255,0), (bx31, by1), 10)
-        pygame.draw.circle(main_surface, (0,0,255), (bx32, by2), 10)
-        """
 
         pygame.draw.rect(main_surface, (255,0,255), (x3-25, y3,50,20))
 
