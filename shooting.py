@@ -135,6 +135,9 @@ def main():
             hit_count+=1
             hit=0
             target_size-=1
+            if(target_size<10):
+                target_size=20
+                
         texthit = font.render("hit count="+str(hit_count), True, (0,0,0))
         main_surface.blit(texthit, (200,45))
         pygame.display.update()
