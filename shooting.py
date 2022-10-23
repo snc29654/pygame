@@ -23,7 +23,9 @@ def main():
     by2 =400
     target_size=20
     x3=300
-    bx3=300
+    bx30=300
+    bx31=300
+    bx32=300
     y3 =400
 
     hit_count=0
@@ -52,14 +54,16 @@ def main():
                 if event.key == K_RIGHT:
                     x3=x3+10        
                 if event.key == K_SPACE:
-                    bx3=x3
                     if(bstate==0):
+                        bx30=x3
                         by0=400
                         bstate=1
                     elif(bstate==1):
+                        bx31=x3
                         by1=400
                         bstate=2
                     else:
+                        bx32=x3
                         by2=400
                         bstate=0
                         
@@ -77,20 +81,58 @@ def main():
                     by0=400
                     stop=0
 
-        if(((bx3>(x-target_size/2))and(bx3<(x+target_size/2)))
+        if(((bx30>(x-target_size/2))and(bx30<(x+target_size/2)))
          and((by0>(y-target_size/2))and(by0<(y+target_size/2)))):
             print("hit")
             hit=1
 
-        if(((bx3>(x-target_size/2))and(bx3<(x+target_size/2)))
+        if(((bx30>(x-target_size/2))and(bx30<(x+target_size/2)))
          and((by1>(y-target_size/2))and(by1<(y+target_size/2)))):
             print("hit")
             hit=1
 
-        if(((bx3>(x-target_size/2))and(bx3<(x+target_size/2)))
+        if(((bx30>(x-target_size/2))and(bx30<(x+target_size/2)))
          and((by2>(y-target_size/2))and(by2<(y+target_size/2)))):
             print("hit")
             hit=1
+
+
+        if(((bx31>(x-target_size/2))and(bx31<(x+target_size/2)))
+         and((by0>(y-target_size/2))and(by0<(y+target_size/2)))):
+            print("hit")
+            hit=1
+
+        if(((bx31>(x-target_size/2))and(bx31<(x+target_size/2)))
+         and((by1>(y-target_size/2))and(by1<(y+target_size/2)))):
+            print("hit")
+            hit=1
+
+        if(((bx31>(x-target_size/2))and(bx31<(x+target_size/2)))
+         and((by2>(y-target_size/2))and(by2<(y+target_size/2)))):
+            print("hit")
+            hit=1
+
+
+
+
+        if(((bx32>(x-target_size/2))and(bx32<(x+target_size/2)))
+         and((by0>(y-target_size/2))and(by0<(y+target_size/2)))):
+            print("hit")
+            hit=1
+
+        if(((bx32>(x-target_size/2))and(bx32<(x+target_size/2)))
+         and((by1>(y-target_size/2))and(by1<(y+target_size/2)))):
+            print("hit")
+            hit=1
+
+        if(((bx32>(x-target_size/2))and(bx32<(x+target_size/2)))
+         and((by2>(y-target_size/2))and(by2<(y+target_size/2)))):
+            print("hit")
+            hit=1
+
+
+
+
 
 
         main_surface.fill((220, 220, 220))
@@ -117,9 +159,9 @@ def main():
                     
         pygame.draw.circle(main_surface, (0,0,255), (x, y), target_size)
 
-        pygame.draw.circle(main_surface, (0,0,0), (bx3, by0), 10)
-        pygame.draw.circle(main_surface, (0,255,0), (bx3, by1), 10)
-        pygame.draw.circle(main_surface, (0,0,255), (bx3, by2), 10)
+        pygame.draw.circle(main_surface, (0,0,0), (bx30, by0), 10)
+        pygame.draw.circle(main_surface, (0,255,0), (bx31, by1), 10)
+        pygame.draw.circle(main_surface, (0,0,255), (bx32, by2), 10)
 
         #pygame.draw.circle(main_surface, (255,0,255), (x3, y3), 20)
 
