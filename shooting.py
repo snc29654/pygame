@@ -27,6 +27,14 @@ def main():
     bx31=300
     bx32=300
     y3 =400
+    xystate=0    
+
+    bxt=[0,1,2,3,4,5,6,7,8,9]
+    byt=[0,1,2,3,4,5,6,7,8,9]
+
+    for i in range(10):
+        bxt[i]=300
+        byt[i]=400
 
     hit_count=0
     stop=0
@@ -54,22 +62,12 @@ def main():
                 if event.key == K_RIGHT:
                     x3=x3+10        
                 if event.key == K_SPACE:
-                    if(bstate==0):
-                        bx30=x3
-                        by0=400
-                        bstate=1
-                    elif(bstate==1):
-                        bx31=x3
-                        by1=400
-                        bstate=2
-                    else:
-                        bx32=x3
-                        by2=400
-                        bstate=0
-                        
-                            
+                    bxt[xystate]=x3
+                    byt[xystate]=400
+                    xystate += 1
+                    if(xystate==9):
+                        xystate=0    
                     stop=0
-                    print(bstate,by0,by1)
 
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -81,56 +79,14 @@ def main():
                     by0=400
                     stop=0
 
-        if(((bx30>(x-target_size/2))and(bx30<(x+target_size/2)))
-         and((by0>(y-target_size/2))and(by0<(y+target_size/2)))):
-            print("hit")
-            hit=1
 
-        if(((bx30>(x-target_size/2))and(bx30<(x+target_size/2)))
-         and((by1>(y-target_size/2))and(by1<(y+target_size/2)))):
-            print("hit")
-            hit=1
+        for i in range(10):
+            if(((bxt[i]>(x-target_size))and(bxt[i]<(x+target_size)))
+             and((byt[i]>(y-target_size))and(byt[i]<(y+target_size)))):
+                print("hit")
+                hit=1
 
-        if(((bx30>(x-target_size/2))and(bx30<(x+target_size/2)))
-         and((by2>(y-target_size/2))and(by2<(y+target_size/2)))):
-            print("hit")
-            hit=1
-
-
-        if(((bx31>(x-target_size/2))and(bx31<(x+target_size/2)))
-         and((by0>(y-target_size/2))and(by0<(y+target_size/2)))):
-            print("hit")
-            hit=1
-
-        if(((bx31>(x-target_size/2))and(bx31<(x+target_size/2)))
-         and((by1>(y-target_size/2))and(by1<(y+target_size/2)))):
-            print("hit")
-            hit=1
-
-        if(((bx31>(x-target_size/2))and(bx31<(x+target_size/2)))
-         and((by2>(y-target_size/2))and(by2<(y+target_size/2)))):
-            print("hit")
-            hit=1
-
-
-
-
-        if(((bx32>(x-target_size/2))and(bx32<(x+target_size/2)))
-         and((by0>(y-target_size/2))and(by0<(y+target_size/2)))):
-            print("hit")
-            hit=1
-
-        if(((bx32>(x-target_size/2))and(bx32<(x+target_size/2)))
-         and((by1>(y-target_size/2))and(by1<(y+target_size/2)))):
-            print("hit")
-            hit=1
-
-        if(((bx32>(x-target_size/2))and(bx32<(x+target_size/2)))
-         and((by2>(y-target_size/2))and(by2<(y+target_size/2)))):
-            print("hit")
-            hit=1
-
-
+            
 
 
 
@@ -143,7 +99,8 @@ def main():
         by0 -=10
         by1 -=10
         by2 -=10
-
+        for i in range(10):
+            byt[i]-=10
 
         if(stop==1):
             pass
@@ -153,17 +110,21 @@ def main():
                 if(x>400):
                     state=1
             if(state==1):
-                x -= 3
-                if(x<150):
+                  x -= 3
+                  if(x<150):
                     state=0    
                     
         pygame.draw.circle(main_surface, (0,0,255), (x, y), target_size)
 
+
+        for i in range(10):
+            pygame.draw.circle(main_surface, (0,0,0), (bxt[i], byt[i]), 10)
+            
+        """
         pygame.draw.circle(main_surface, (0,0,0), (bx30, by0), 10)
         pygame.draw.circle(main_surface, (0,255,0), (bx31, by1), 10)
         pygame.draw.circle(main_surface, (0,0,255), (bx32, by2), 10)
-
-        #pygame.draw.circle(main_surface, (255,0,255), (x3, y3), 20)
+        """
 
         pygame.draw.rect(main_surface, (255,0,255), (x3-25, y3,50,20))
 
