@@ -76,7 +76,11 @@ def main():
                 if start_button.collidepoint(event.pos):
                     stop=0
                 if reset_button.collidepoint(event.pos):
-                    by0=400
+                    bxt[xystate]=x3
+                    byt[xystate]=400
+                    xystate += 1
+                    if(xystate==9):
+                        xystate=0    
                     stop=0
 
 
