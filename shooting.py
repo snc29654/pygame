@@ -21,7 +21,7 @@ def main():
     by0 =400
     by1 =400
     by2 =400
-
+    target_size=20
     x3=300
     bx3=300
     y3 =400
@@ -77,18 +77,18 @@ def main():
                     by0=400
                     stop=0
 
-        if(((bx3>(x-10))and(bx3<(x+10)))
-         and((by0>(y-10))and(by0<(y+10)))):
+        if(((bx3>(x-target_size/2))and(bx3<(x+target_size/2)))
+         and((by0>(y-target_size/2))and(by0<(y+target_size/2)))):
             print("hit")
             hit=1
 
-        if(((bx3>(x-10))and(bx3<(x+10)))
-         and((by1>(y-10))and(by1<(y+10)))):
+        if(((bx3>(x-target_size/2))and(bx3<(x+target_size/2)))
+         and((by1>(y-target_size/2))and(by1<(y+target_size/2)))):
             print("hit")
             hit=1
 
-        if(((bx3>(x-10))and(bx3<(x+10)))
-         and((by2>(y-10))and(by2<(y+10)))):
+        if(((bx3>(x-target_size/2))and(bx3<(x+target_size/2)))
+         and((by2>(y-target_size/2))and(by2<(y+target_size/2)))):
             print("hit")
             hit=1
 
@@ -115,7 +115,7 @@ def main():
                 if(x<150):
                     state=0    
                     
-        pygame.draw.circle(main_surface, (0,0,255), (x, y), 20)
+        pygame.draw.circle(main_surface, (0,0,255), (x, y), target_size)
 
         pygame.draw.circle(main_surface, (0,0,0), (bx3, by0), 10)
         pygame.draw.circle(main_surface, (0,255,0), (bx3, by1), 10)
@@ -132,6 +132,7 @@ def main():
         if(hit==1):
             hit_count+=1
             hit=0
+            target_size-=1
         texthit = font.render("hit count="+str(hit_count), True, (0,0,0))
         main_surface.blit(texthit, (200,45))
         pygame.display.update()
