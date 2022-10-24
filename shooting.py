@@ -143,10 +143,11 @@ def main():
 
 
                     
-        img = pygame.transform.rotozoom(pygame.image.load("char.jpg"), 0, 0.2)
+        #img = pygame.transform.rotozoom(pygame.image.load("char.jpg"), 0, 0.2)
  
-        main_surface.blit(img, (xk,yk))
+        #main_surface.blit(img, (xk,yk))
              
+        pygame.draw.rect(main_surface, (100,0,255), (xk, yk,50,20))
                     
         pygame.draw.circle(main_surface, (0,0,255), (x, y), target_size)
 
