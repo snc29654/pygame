@@ -1,6 +1,11 @@
 from pygame.locals import *
 import sys
 import pygame
+
+WIDTH  = 640        # 幅
+HEIGHT = 400        # 高さ
+
+
 def main():
     pygame.init()
     main_surface = pygame.display.set_mode((500, 500)) 
@@ -16,6 +21,8 @@ def main():
     text4 = font.render("CURSOL:SHOOTER MOVE /  SPACE ball start   ", True, (0,0,0))
     texthit = font.render("HIT!", True, (0,0,0))
     x=150
+    xk=150
+    yk=200
     y = 30
     x2=300
     by0 =400
@@ -28,7 +35,8 @@ def main():
     bx32=300
     y3 =400
     xystate=0    
-
+    khit=0
+    
     bxt=[0,1,2,3,4,5,6,7,8,9]
     byt=[0,1,2,3,4,5,6,7,8,9]
 
@@ -36,11 +44,13 @@ def main():
         bxt[i]=300
         byt[i]=400
 
+
     hit_count=0
     stop=0
     hit=0
     going = True
     state = 0
+    kstate = 0
     bstate = 0
     while going:
         pressed = pygame.key.get_pressed()
@@ -67,7 +77,7 @@ def main():
                     xystate += 1
                     if(xystate==9):
                         xystate=0    
-                    stop=0
+                    #stop=0
 
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -81,15 +91,18 @@ def main():
                     xystate += 1
                     if(xystate==9):
                         xystate=0    
-                    stop=0
 
 
         for i in range(10):
             if(((bxt[i]>(x-target_size))and(bxt[i]<(x+target_size)))
              and((byt[i]>(y-target_size))and(byt[i]<(y+target_size)))):
-                print("hit")
                 hit=1
 
+        for i in range(10):
+            if(((bxt[i]>(xk-target_size))and(bxt[i]<(xk+target_size)))
+             and((byt[i]>(yk-target_size))and(byt[i]<(yk+target_size)))):
+                stop=1
+                khit=1
             
 
 
@@ -103,12 +116,13 @@ def main():
         by0 -=10
         by1 -=10
         by2 -=10
-        for i in range(10):
-            byt[i]-=10
 
         if(stop==1):
             pass
         else: 
+            for i in range(10):
+                byt[i]-=10
+
             if(state==0):
                 x += 3
                 if(x>400):
@@ -117,6 +131,22 @@ def main():
                   x -= 3
                   if(x<150):
                     state=0    
+
+            if(kstate==0):
+                xk += 5
+                if(xk>400):
+                    kstate=1
+            if(kstate==1):
+                  xk -= 5
+                  if(xk<150):
+                    kstate=0    
+
+
+                    
+        img = pygame.transform.rotozoom(pygame.image.load("char.jpg"), 0, 0.2)
+ 
+        main_surface.blit(img, (xk,yk))
+             
                     
         pygame.draw.circle(main_surface, (0,0,255), (x, y), target_size)
 
@@ -137,8 +167,10 @@ def main():
             target_size-=1
             if(target_size<10):
                 target_size=20
-                
-        texthit = font.render("hit count="+str(hit_count), True, (0,0,0))
+        if(khit==1):        
+            texthit = font.render("game over count="+str(hit_count), True, (0,0,0))
+        else:
+            texthit = font.render("hit count="+str(hit_count), True, (0,0,0))
         main_surface.blit(texthit, (200,45))
         pygame.display.update()
         clock.tick(50)
