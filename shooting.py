@@ -96,7 +96,7 @@ def main():
 
         for i in range(10):
             if(((bxt[i]>(x-target_size))and(bxt[i]<(x+target_size)))
-             and((byt[i]>(y-target_size))and(byt[i]<(y+target_size)))):
+             and((byt[i]>(y-10))and(byt[i]<(y+10)))):
                 hit=1
 
         for i in range(10):
