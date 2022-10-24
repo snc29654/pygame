@@ -93,12 +93,13 @@ def main():
                         xystate=0    
                     stop=0
 
-
+        #的衝突             
         for i in range(10):
             if(((bxt[i]>(x-target_size))and(bxt[i]<(x+target_size)))
              and((byt[i]>(y-10))and(byt[i]<(y+10)))):
                 hit=1
 
+        #障壁衝突             
         for i in range(10):
             if(((bxt[i]>(xk))and(bxt[i]<(xk+target_size+40)))
              and((byt[i]>(yk))and(byt[i]<(yk+target_size)))):
@@ -144,20 +145,20 @@ def main():
 
 
                     
-        #img = pygame.transform.rotozoom(pygame.image.load("char.jpg"), 0, 0.2)
- 
-        #main_surface.blit(img, (xk,yk))
-             
+        #障壁             
         pygame.draw.rect(main_surface, (100,0,255), (xk, yk,50,20))
                     
+        #的             
         pygame.draw.circle(main_surface, (0,0,255), (x, y), target_size)
 
-
+        #玉             
         for i in range(10):
             pygame.draw.circle(main_surface, (0,0,0), (bxt[i], byt[i]), 10)
             
-
+        #大砲             
         pygame.draw.rect(main_surface, (255,0,255), (x3-25, y3,50,20))
+
+
 
         main_surface.blit(text1, (40, 45))
         main_surface.blit(text2, (40,145))
