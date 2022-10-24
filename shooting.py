@@ -77,7 +77,7 @@ def main():
                     xystate += 1
                     if(xystate==9):
                         xystate=0    
-                    #stop=0
+                    stop=0
 
 
             if event.type == pygame.MOUSEBUTTONDOWN:
@@ -91,6 +91,7 @@ def main():
                     xystate += 1
                     if(xystate==9):
                         xystate=0    
+                    stop=0
 
 
         for i in range(10):
@@ -99,8 +100,8 @@ def main():
                 hit=1
 
         for i in range(10):
-            if(((bxt[i]>(xk-target_size))and(bxt[i]<(xk+target_size)))
-             and((byt[i]>(yk-target_size))and(byt[i]<(yk+target_size)))):
+            if(((bxt[i]>(xk))and(bxt[i]<(xk+target_size+40)))
+             and((byt[i]>(yk))and(byt[i]<(yk+target_size)))):
                 stop=1
                 khit=1
             
@@ -133,11 +134,11 @@ def main():
                     state=0    
 
             if(kstate==0):
-                xk += 5
+                xk += 2
                 if(xk>400):
                     kstate=1
             if(kstate==1):
-                  xk -= 5
+                  xk -= 2
                   if(xk<150):
                     kstate=0    
 
