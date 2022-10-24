@@ -55,8 +55,10 @@ def main():
     while going:
         pressed = pygame.key.get_pressed()
         if pressed[pygame.K_LEFT]:
+            #大砲移動　左
             x3=x3-10        
         if pressed[pygame.K_RIGHT]:
+            #大砲移動　右
             x3=x3+10        
 
 
@@ -68,10 +70,13 @@ def main():
 
             if event.type == KEYDOWN:
                 if event.key == K_LEFT:
+                   #大砲移動　左
                     x3=x3-10        
                 if event.key == K_RIGHT:
+                   #大砲移動　右
                     x3=x3+10        
                 if event.key == K_SPACE:
+                    #玉発射
                     bxt[xystate]=x3
                     byt[xystate]=400
                     xystate += 1
@@ -86,6 +91,7 @@ def main():
                 if start_button.collidepoint(event.pos):
                     stop=0
                 if reset_button.collidepoint(event.pos):
+                    #玉発射
                     bxt[xystate]=x3
                     byt[xystate]=400
                     xystate += 1
@@ -125,6 +131,7 @@ def main():
             for i in range(10):
                 byt[i]-=10
 
+            #的移動
             if(state==0):
                 x += 3
                 if(x>400):
@@ -134,6 +141,8 @@ def main():
                   if(x<150):
                     state=0    
 
+
+            #障壁移動
             if(kstate==0):
                 xk += 2
                 if(xk>400):
@@ -145,11 +154,12 @@ def main():
 
 
                     
-        #障壁             
-        pygame.draw.rect(main_surface, (100,0,255), (xk, yk,50,20))
                     
         #的             
         pygame.draw.circle(main_surface, (0,0,255), (x, y), target_size)
+
+        #障壁             
+        pygame.draw.rect(main_surface, (100,0,255), (xk, yk,50,20))
 
         #玉             
         for i in range(10):
