@@ -145,11 +145,11 @@ def main():
 
             #的移動
             if(ystate==0):
-                y += 3
-                if(y>400):
+                y += 2
+                if(y>300):
                     ystate=1
             if(ystate==1):
-                  y -= 3
+                  y -= 2
                   if(y<150):
                     ystate=0    
 
