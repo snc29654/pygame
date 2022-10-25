@@ -36,15 +36,14 @@ def main():
     y3 =400
     xystate=0    
     khit=0
-    khit_i=99
     
     bxt=[0,1,2,3,4,5,6,7,8,9]
-    byt=[0,1,2,3,4,5,6,7,8,9]
     byt=[0,1,2,3,4,5,6,7,8,9]
 
     for i in range(10):
         bxt[i]=300
         byt[i]=400
+
 
     hit_count=0
     stop=0
@@ -110,10 +109,9 @@ def main():
         for i in range(10):
             if(((bxt[i]>(xk))and(bxt[i]<(xk+target_size+40)))
              and((byt[i]>(yk))and(byt[i]<(yk+target_size)))):
-                stop=0
+                stop=1
                 khit=1
-                khit_i=i 
-                break           
+            
 
 
 
@@ -165,11 +163,8 @@ def main():
 
         #玉             
         for i in range(10):
-            if(i==khit_i):
-                pygame.draw.circle(main_surface, (0,0,0), (0, 0), 10)
-            else:    
-                pygame.draw.circle(main_surface, (0,0,0), (bxt[i], byt[i]), 10)
-                  
+            pygame.draw.circle(main_surface, (0,0,0), (bxt[i], byt[i]), 10)
+            
         #大砲             
         pygame.draw.rect(main_surface, (255,0,255), (x3-25, y3,50,20))
 
