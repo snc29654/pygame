@@ -59,7 +59,49 @@ class top_app():
                 self.stop=1
                 self.khit=1
 
-    
+    def target_move(self):
+        #的移動
+        if(self.state==0):
+            self.x += 3
+            if(self.x>400):
+                self.state=1
+        if(self.state==1):
+              self.x -= 3
+              if(self.x<150):
+                self.state=0    
+
+
+        #的移動
+        if(self.ystate==0):
+            self.y += 2
+            if(self.y>300):
+                self.ystate=1
+        if(self.ystate==1):
+              self.y -= 2
+              if(self.y<150):
+                        self.ystate=0    
+        
+
+    def wall_move(self):
+        if(self.kstate==0):
+            self.xk += 2
+            if(self.xk>400):
+                self.kstate=1
+        if(self.kstate==1):
+              self.xk -= 2
+              if(self.xk<150):
+                self.kstate=0    
+
+        if(self.ykstate==0):
+            self.yk += 2
+            if(self.yk>300):
+                self.ykstate=1
+        if(self.ykstate==1):
+              self.yk -= 2
+              if(self.yk<150):
+                self.ykstate=0    
+
+
     def game_loop(self):
         pygame.display.set_caption("SHOOTING TEST")
         clock = pygame.time.Clock()
@@ -109,9 +151,9 @@ class top_app():
     
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if stop_button.collidepoint(event.pos):
-                        stop=1
+                        self.stop=1
                     if start_button.collidepoint(event.pos):
-                        stop=0
+                        self.stop=0
                     if reset_button.collidepoint(event.pos):
                         #玉発射
                         self.bxt[self.xy0state]=self.x3
@@ -147,45 +189,10 @@ class top_app():
                     self.byt[i]-=10
     
                 #的移動
-                if(self.state==0):
-                    self.x += 3
-                    if(self.x>400):
-                        self.state=1
-                if(self.state==1):
-                      self.x -= 3
-                      if(self.x<150):
-                        self.state=0    
-    
-    
-                #的移動
-                if(self.ystate==0):
-                    self.y += 2
-                    if(self.y>300):
-                        self.ystate=1
-                if(self.ystate==1):
-                      self.y -= 2
-                      if(self.y<150):
-                        self.ystate=0    
-    
+                self.target_move()	    
     
                 #障壁移動
-                if(self.kstate==0):
-                    self.xk += 2
-                    if(self.xk>400):
-                        self.kstate=1
-                if(self.kstate==1):
-                      self.xk -= 2
-                      if(self.xk<150):
-                        self.kstate=0    
-    
-                if(self.ykstate==0):
-                    self.yk += 2
-                    if(self.yk>300):
-                        self.ykstate=1
-                if(self.ykstate==1):
-                      self.yk -= 2
-                      if(self.yk<150):
-                        self.ykstate=0    
+                self.wall_move()	    
     
                         
                         
