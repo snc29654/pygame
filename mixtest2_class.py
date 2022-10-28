@@ -50,7 +50,7 @@ class top_app():
     def hit_check(self):
         for i in range(10):
             if(((self.bxt[i]>(self.x-self.target_size))and(self.bxt[i]<(self.x+self.target_size)))
-             and((self.byt[i]>(self.y-5))and(self.byt[i]<(self.y+5)))):
+             and((self.byt[i]>(self.y-7))and(self.byt[i]<(self.y+7)))):
                 self.hit=1
 
 
@@ -71,22 +71,22 @@ class top_app():
     def target_move(self):
         #的移動
         if(self.state==0):
-            self.x += 3
+            self.x += (3 +self.hit_count)
             if(self.x>400):
                 self.state=1
         if(self.state==1):
-              self.x -= 3
+              self.x -= (3 +self.hit_count)
               if(self.x<150):
                 self.state=0    
 
 
         #的移動
         if(self.ystate==0):
-            self.y += 2
+            self.y += (2 +self.hit_count)
             if(self.y>300):
                 self.ystate=1
         if(self.ystate==1):
-              self.y -= 2
+              self.y -= (2 +self.hit_count)
               if(self.y<150):
                         self.ystate=0    
         
