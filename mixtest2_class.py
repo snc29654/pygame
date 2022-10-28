@@ -20,6 +20,7 @@ class top_app():
         self.x3=300
         self.y3 =400
         self.target_size=8
+        self.wall_size=40
         self.xy0state=0    
         self.khit=0
         self.ystate=0    
@@ -56,8 +57,8 @@ class top_app():
 
     def wall_out(self):
         for i in range(10):
-            if(((self.bxt[i]>(self.xk))and(self.bxt[i]<(self.xk+self.target_size+40)))
-             and((self.byt[i]>(self.yk))and(self.byt[i]<(self.yk+self.target_size)))):
+            if(((self.bxt[i]>(self.xk))and(self.bxt[i]<(self.xk+self.wall_size)))
+             and((self.byt[i]>(self.yk))and(self.byt[i]<(self.yk+10)))):
                 self.stop=1
                 self.khit=1
     
@@ -209,7 +210,7 @@ class top_app():
             self.make_target()            
     
             #障壁             
-            pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,50,20))
+            pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,self.wall_size,10))
     
             #玉             
             for i in range(10):
