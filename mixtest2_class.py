@@ -1,6 +1,8 @@
 from pygame.locals import *
 import sys
 import pygame
+import random
+
 
 WIDTH  = 640        # 幅
 HEIGHT = 400        # 高さ
@@ -60,11 +62,11 @@ class top_app():
                 self.khit=1
     
     def make_target(self):
-        pygame.draw.circle(self.main_surface, (0,0,255), (self.x, self.y), self.target_size)
-        pygame.draw.circle(self.main_surface, (0,0,255), (self.x-8, self.y-8), self.target_size)
-        pygame.draw.circle(self.main_surface, (0,0,255), (self.x-8, self.y+8), self.target_size)
-        pygame.draw.circle(self.main_surface, (0,0,255), (self.x+8, self.y-8), self.target_size)
-        pygame.draw.circle(self.main_surface, (0,0,255), (self.x+8, self.y+8), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x, self.y), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-8, self.y-8), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-8, self.y+8), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+8, self.y-8), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+8, self.y+8), self.target_size)
 
     def target_move(self):
         #的移動
