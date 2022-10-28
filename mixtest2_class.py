@@ -49,8 +49,8 @@ class top_app():
 
     def hit_check(self):
         for i in range(10):
-            if(((self.bxt[i]>(self.x-self.target_size))and(self.bxt[i]<(self.x+self.target_size)))
-             and((self.byt[i]>(self.y-7))and(self.byt[i]<(self.y+7)))):
+            if(((self.bxt[i]>(self.x-self.target_size-10))and(self.bxt[i]<(self.x+self.target_size+10)))
+             and((self.byt[i]>(self.y-4))and(self.byt[i]<(self.y+4)))):
                 self.hit=1
 
 
@@ -227,9 +227,6 @@ class top_app():
             if(self.hit==1):
                 self.hit_count+=1
                 self.hit=0
-                self.target_size-=1
-                if(self.target_size<10):
-                    self.target_size=8
             if(self.khit==1):        
                 texthit = font.render("game over count="+str(self.hit_count), True, (0,0,0))
             else:
