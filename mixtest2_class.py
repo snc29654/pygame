@@ -17,7 +17,7 @@ class top_app():
         self.by2 =400
         self.x3=300
         self.y3 =400
-        self.target_size=20
+        self.target_size=8
         self.xy0state=0    
         self.khit=0
         self.ystate=0    
@@ -58,6 +58,13 @@ class top_app():
              and((self.byt[i]>(self.yk))and(self.byt[i]<(self.yk+self.target_size)))):
                 self.stop=1
                 self.khit=1
+    
+    def make_target(self):
+        pygame.draw.circle(self.main_surface, (0,0,255), (self.x, self.y), self.target_size)
+        pygame.draw.circle(self.main_surface, (0,0,255), (self.x-8, self.y-8), self.target_size)
+        pygame.draw.circle(self.main_surface, (0,0,255), (self.x-8, self.y+8), self.target_size)
+        pygame.draw.circle(self.main_surface, (0,0,255), (self.x+8, self.y-8), self.target_size)
+        pygame.draw.circle(self.main_surface, (0,0,255), (self.x+8, self.y+8), self.target_size)
 
     def target_move(self):
         #的移動
@@ -196,8 +203,8 @@ class top_app():
     
                         
                         
-            #的             
-            pygame.draw.circle(self.main_surface, (0,0,255), (self.x, self.y), self.target_size)
+            #的 
+            self.make_target()            
     
             #障壁             
             pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,50,20))
@@ -220,7 +227,7 @@ class top_app():
                 self.hit=0
                 self.target_size-=1
                 if(self.target_size<10):
-                    self.target_size=20
+                    self.target_size=8
             if(self.khit==1):        
                 texthit = font.render("game over count="+str(self.hit_count), True, (0,0,0))
             else:
