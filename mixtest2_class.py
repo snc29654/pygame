@@ -69,6 +69,22 @@ class top_app():
         pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+8, self.y-8), self.target_size)
         pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+8, self.y+8), self.target_size)
 
+    def make_target_out(self):
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x, self.y), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-20, self.y-20), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-20, self.y+20), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+20, self.y-20), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+20, self.y+20), self.target_size)
+
+
+    def make_target_base(self):
+        pygame.draw.circle(self.main_surface, (255,255,0), (self.x, self.y), self.target_size)
+        pygame.draw.circle(self.main_surface, (255,0,0), (self.x-8, self.y-8), self.target_size)
+        pygame.draw.circle(self.main_surface, (255,0,0), (self.x-8, self.y+8), self.target_size)
+        pygame.draw.circle(self.main_surface, (255,0,0), (self.x+8, self.y-8), self.target_size)
+        pygame.draw.circle(self.main_surface, (255,0,0), (self.x+8, self.y+8), self.target_size)
+
+
     def target_move(self):
         #的移動
         if(self.state==0):
@@ -207,8 +223,18 @@ class top_app():
                         
                         
             #的 
-            self.make_target()            
-    
+            if(self.hit_count==0):
+                if(self.khit==0):
+                    self.make_target_base()            
+                else:
+                    self.make_target_out()            
+            else:
+                if(self.khit==0):
+                    self.make_target()            
+                else:
+                    self.make_target_out()            
+                    
+                
             #障壁             
             pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,self.wall_size,10))
     
