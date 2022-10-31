@@ -57,19 +57,8 @@ class top_app():
         pygame.quit()
         sys.exit()
 
-    def hit_check(self):
-        for i in range(10):
-            if(((self.bxt[i]>(self.x-self.target_size-10))and(self.bxt[i]<(self.x+self.target_size+10)))
-             and((self.byt[i]>(self.y-4))and(self.byt[i]<(self.y+4)))):
-                self.hit=1
 
 
-    def wall_out(self):
-        for i in range(10):
-            if(((self.bxt[i]>(self.xk))and(self.bxt[i]<(self.xk+self.wall_size)))
-             and((self.byt[i]>(self.yk))and(self.byt[i]<(self.yk+10)))):
-                self.stop=1
-                self.khit=1
     
     def make_target(self):
         pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x, self.y), self.target_size)
@@ -197,17 +186,16 @@ class top_app():
 
 
     def game_loop(self):
-        pygame.display.set_caption("SHOOTING TEST")
+        pygame.display.set_caption("Dsign")
         clock = pygame.time.Clock()
         stop_button = pygame.Rect(30, 30, 80, 50)  
         start_button = pygame.Rect(30, 130, 80, 50)  
-        reset_button = pygame.Rect(30, 230, 80, 50)  
+        #reset_button = pygame.Rect(30, 230, 80, 50)  
         font = pygame.font.SysFont(None, 25)
         text1 = font.render("STOP", True, (0,0,0))
         text2 = font.render("START", True, (0,0,0))
-        text3 = font.render("SHOOT", True, (0,0,0))
-        text4 = font.render("CURSOL:SHOOTER MOVE /  SPACE ball start   ", True, (0,0,0))
-        texthit = font.render("HIT!", True, (0,0,0))
+        #text3 = font.render("SHOOT", True, (0,0,0))
+        #text4 = font.render("CURSOL:SHOOTER MOVE /  SPACE ball start   ", True, (0,0,0))
         
         going = True
         while going:
@@ -248,20 +236,7 @@ class top_app():
                         self.stop=1
                     if start_button.collidepoint(event.pos):
                         self.stop=0
-                    if reset_button.collidepoint(event.pos):
-                        #玉発射
-                        self.bxt[self.xy0state]=self.x3
-                        self.byt[self.xy0state]=400
-                        self.xy0state += 1
-                        if(self.xy0state==9):
-                            self.xy0state=0    
-                        self.stop=0
     
-            #的衝突 
-            self.hit_check()            
-    
-            #障壁衝突 
-            self.wall_out()            
                 
     
     
@@ -270,7 +245,6 @@ class top_app():
             self.main_surface.fill((220, 220, 220))
             pygame.draw.rect(self.main_surface, (255, 0, 0), stop_button)
             pygame.draw.rect(self.main_surface, (255, 255, 0), start_button)
-            pygame.draw.rect(self.main_surface, (0, 0, 255), reset_button)
     
             self.by0 -=10
             self.by1 -=10
@@ -296,32 +270,11 @@ class top_app():
             self.make_target_base()            
             self.make_target_base1()            
             self.make_target_base2()            
-                    
-            """     
-            #障壁             
-            pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,self.wall_size,10))
-    
-            #玉             
-            for i in range(10):
-                pygame.draw.circle(self.main_surface, (0,0,0), (self.bxt[i], self.byt[i]), 10)
-                
-            #大砲             
-            pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-25, self.y3,50,20))
-    
-            """
     
             self.main_surface.blit(text1, (40, 45))
             self.main_surface.blit(text2, (40,145))
-            self.main_surface.blit(text3, (40,245))
-            self.main_surface.blit(text4, (40,430))
-            if(self.hit==1):
-                self.hit_count+=1
-                self.hit=0
-            if(self.khit==1):        
-                texthit = font.render("game over count="+str(self.hit_count), True, (0,0,0))
-            else:
-                texthit = font.render("hit count="+str(self.hit_count), True, (0,0,0))
-            self.main_surface.blit(texthit, (200,45))
+            #self.main_surface.blit(text3, (40,245))
+            #self.main_surface.blit(text4, (40,430))
             pygame.display.update()
             clock.tick(50)
 if __name__ == '__main__':
