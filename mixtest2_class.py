@@ -101,7 +101,7 @@ class top_app():
     
     def make_tama(self):
         for i in range(10):
-            pygame.draw.circle(self.main_surface, (0,0,0), (self.bxt[i], self.byt[i]), 10)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.bxt[i], self.byt[i]), 10)
     
     
     def target_move(self):
