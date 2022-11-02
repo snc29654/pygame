@@ -84,7 +84,22 @@ class top_app():
         pygame.draw.circle(self.main_surface, (255,0,0), (self.x+8, self.y-8), self.target_size)
         pygame.draw.circle(self.main_surface, (255,0,0), (self.x+8, self.y+8), self.target_size)
 
+    def make_taiho(self):
+        pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-10, self.y3-10,20,20))
+        pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-25, self.y3,50,20))
 
+    def make_wall(self):
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,self.wall_size,10))
+
+    def make_wall_out(self):
+        #pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,self.wall_size,10))
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk, self.yk), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk-20, self.yk-20), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk-20, self.yk+20), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk+20, self.yk-20), self.target_size)
+        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk+20, self.yk+20), self.target_size)
+
+    
     def target_move(self):
         #的移動
         if(self.state==0):
@@ -224,27 +239,23 @@ class top_app():
                         
             #的 
             if(self.hit_count==0):
-                if(self.khit==0):
-                    self.make_target_base()            
-                else:
-                    self.make_target_out()            
+                self.make_target_base()            
             else:
-                if(self.khit==0):
-                    self.make_target()            
-                else:
-                    self.make_target_out()            
+                self.make_target()            
                     
                 
             #障壁             
-            pygame.draw.rect(self.main_surface, (100,0,255), (self.xk, self.yk,self.wall_size,10))
-    
+            if(self.khit==0):
+                self.make_wall()
+            else:
+                self.make_wall_out()
+                
             #玉             
             for i in range(10):
                 pygame.draw.circle(self.main_surface, (0,0,0), (self.bxt[i], self.byt[i]), 10)
                 
             #大砲             
-            pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-25, self.y3,50,20))
-    
+            self.make_taiho()
     
     
             self.main_surface.blit(text1, (40, 45))
