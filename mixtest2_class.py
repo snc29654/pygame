@@ -98,7 +98,11 @@ class top_app():
         pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk-20, self.yk+20), self.target_size)
         pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk+20, self.yk-20), self.target_size)
         pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk+20, self.yk+20), self.target_size)
-
+    
+    def make_tama(self):
+        for i in range(10):
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.bxt[i], self.byt[i]), 10)
+    
     
     def target_move(self):
         #的移動
@@ -251,8 +255,7 @@ class top_app():
                 self.make_wall_out()
                 
             #玉             
-            for i in range(10):
-                pygame.draw.circle(self.main_surface, (0,0,0), (self.bxt[i], self.byt[i]), 10)
+            self.make_tama()
                 
             #大砲             
             self.make_taiho()
