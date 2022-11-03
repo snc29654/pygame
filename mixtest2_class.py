@@ -21,22 +21,21 @@ class top_app():
         self.wall_size=40
         self.xy0state=0    
         self.khit=0
-        self.ystate=0    
         self.state = 0
-        self.x=150
-        self.y = 30
         self.hit_count=0
         self.stop=0
         self.hit=0
         self.state = 0
         self.kstate = 0
-        self.xstate=0
-        self.ystate=0
+        self.xstate=[0,1,2,3,4,5,6,7,8,9]
+        self.ystate=[0,1,2,3,4,5,6,7,8,9]
 
         self.bxt=[0,1,2,3,4,5,6,7,8,9]
         self.byt=[0,1,2,3,4,5,6,7,8,9]
         self.xk=[0,1,2,3,4,5,6,7,8,9]
         self.yk=[0,1,2,3,4,5,6,7,8,9]
+        self.x=[0,1,2,3,4,5,6,7,8,9]
+        self.y=[0,1,2,3,4,5,6,7,8,9]
         self.xkstate=[0,1,2,3,4,5,6,7,8,9]
         self.ykstate=[0,1,2,3,4,5,6,7,8,9]
     
@@ -45,8 +44,12 @@ class top_app():
             self.byt[i]=400
             self.xk[i]=150
             self.yk[i]=30
+            self.x[i]=150
+            self.y[i]=30
             self.xkstate[i]=0    
             self.ykstate[i]=0    
+            self.xstate[i]=0    
+            self.ystate[i]=0    
     
     def main(self):
         
@@ -57,13 +60,13 @@ class top_app():
 
     def hit_check(self):
         for i in range(10):
-            if(((self.bxt[i]>(self.x-self.target_size-10))and(self.bxt[i]<(self.x+self.target_size+10)))
-             and((self.byt[i]>(self.y-4))and(self.byt[i]<(self.y+4)))):
+            if(((self.bxt[i]>(self.x[i]-self.target_size-10))and(self.bxt[i]<(self.x[i]+self.target_size+10)))
+             and((self.byt[i]>(self.y[i]-4))and(self.byt[i]<(self.y[i]+4)))):
                 self.hit=1
 
 
     def wall_out(self):
-        for j in range(3):
+        for j in range(4):
             for i in range(10):
                 if(((self.bxt[i]>(self.xk[j]))and(self.bxt[i]<(self.xk[j]+self.wall_size)))
                 and((self.byt[i]>(self.yk[j]))and(self.byt[i]<(self.yk[j]+10)))):
@@ -71,37 +74,40 @@ class top_app():
                     self.khit=1
     
     def make_target(self):
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x, self.y), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-8, self.y-8), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-8, self.y+8), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+8, self.y-8), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+8, self.y+8), self.target_size)
+        for i in range(4):
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i], self.y[i]), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]-8, self.y[i]-8), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]-8, self.y[i]+8), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+8, self.y[i]-8), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+8, self.y[i]+8), self.target_size)
 
     def make_target_out(self):
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x, self.y), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-20, self.y-20), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x-20, self.y+20), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+20, self.y-20), self.target_size)
-        pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x+20, self.y+20), self.target_size)
+        for i in range(4):
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i], self.y[i]), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]-20, self.y[i]-20), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]-20, self.y[i]+20), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+20, self.y[i]-20), self.target_size)
+            pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+20, self.y[i]+20), self.target_size)
 
 
     def make_target_base(self):
-        pygame.draw.circle(self.main_surface, (255,255,0), (self.x, self.y), self.target_size)
-        pygame.draw.circle(self.main_surface, (255,0,0), (self.x-8, self.y-8), self.target_size)
-        pygame.draw.circle(self.main_surface, (255,0,0), (self.x-8, self.y+8), self.target_size)
-        pygame.draw.circle(self.main_surface, (255,0,0), (self.x+8, self.y-8), self.target_size)
-        pygame.draw.circle(self.main_surface, (255,0,0), (self.x+8, self.y+8), self.target_size)
+        for i in range(4):
+            pygame.draw.circle(self.main_surface, (255,255,0), (self.x[i], self.y[i]), self.target_size)
+            pygame.draw.circle(self.main_surface, (255,0,0), (self.x[i]-8, self.y[i]-8), self.target_size)
+            pygame.draw.circle(self.main_surface, (255,0,0), (self.x[i]-8, self.y[i]+8), self.target_size)
+            pygame.draw.circle(self.main_surface, (255,0,0), (self.x[i]+8, self.y[i]-8), self.target_size)
+            pygame.draw.circle(self.main_surface, (255,0,0), (self.x[i]+8, self.y[i]+8), self.target_size)
 
     def make_taiho(self):
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-10, self.y3-10,20,20))
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-25, self.y3,50,20))
 
     def make_wall(self):
-        for i in range(3):
+        for i in range(4):
             pygame.draw.rect(self.main_surface, (100,0,255), (self.xk[i], self.yk[i],self.wall_size,10))
 
     def make_wall_out(self):
-        for i in range(3):
+        for i in range(4):
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk[i], self.yk[i]), self.target_size)
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk[i]-20, self.yk[i]-20), self.target_size)
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.xk[i]-20, self.yk[i]+20), self.target_size)
@@ -115,44 +121,44 @@ class top_app():
     
     def target_move(self):
         #的移動
-        if(self.xstate==0):
-            self.x += (3 +self.hit_count)
-            if(self.x>400):
-                self.xstate=1
-        if(self.xstate==1):
-              self.x -= (3 +self.hit_count)
-              if(self.x<150):
-                self.xstate=0    
+        for i in range(4):
+            if(self.xstate[i]==0):
+                self.x[i] += (3 +self.hit_count+i)
+                if(self.x[i]>400):
+                    self.xstate[i]=1
+            if(self.xstate[i]==1):
+                self.x[i] -= (3 +self.hit_count+i)
+                if(self.x[i]<150):
+                    self.xstate[i]=0    
 
 
-        #的移動
-        if(self.ystate==0):
-            self.y += (2 +self.hit_count)
-            if(self.y>300):
-                self.ystate=1
-        if(self.ystate==1):
-              self.y -= (2 +self.hit_count)
-              if(self.y<150):
-                        self.ystate=0    
+            if(self.ystate[i]==0):
+                self.y[i] += (2 +self.hit_count+i)
+                if(self.y[i]>300):
+                    self.ystate[i]=1
+            if(self.ystate[i]==1):
+                self.y[i] -= (2 +self.hit_count+i)
+                if(self.y[i]<150):
+                    self.ystate[i]=0    
         
 
     def wall_move(self):
-        for i in range(3):
+        for i in range(4):
             if(self.xkstate[i]==0):
-                self.xk[i] += (2+i)
+                self.xk[i] += (1+i)
                 if(self.xk[i]>400):
                     self.xkstate[i]=1
             if(self.xkstate[i]==1):
-                  self.xk[i] -= (2+i)
+                  self.xk[i] -= (1+i)
                   if(self.xk[i]<150):
                     self.xkstate[i]=0    
 
             if(self.ykstate[i]==0):
-                self.yk[i] += (2+i)
+                self.yk[i] += (1+i)
                 if(self.yk[i]>300):
                     self.ykstate[i]=1
             if(self.ykstate[i]==1):
-                  self.yk[i] -= (2+i)
+                  self.yk[i] -= (1+i)
                   if(self.yk[i]<150):
                     self.ykstate[i]=0    
 
