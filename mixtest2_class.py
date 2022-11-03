@@ -83,6 +83,9 @@ class top_app():
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]-8, self.y[i]+8), self.target_size)
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+8, self.y[i]-8), self.target_size)
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+8, self.y[i]+8), self.target_size)
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+16), self.target_size)
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+24), self.target_size)
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+32), self.target_size)
 
     def make_target_out(self):
         for i in range(TARGET_COUNT):
@@ -100,6 +103,9 @@ class top_app():
             pygame.draw.circle(self.main_surface, (255,0,0), (self.x[i]-8, self.y[i]+8), self.target_size)
             pygame.draw.circle(self.main_surface, (255,0,0), (self.x[i]+8, self.y[i]-8), self.target_size)
             pygame.draw.circle(self.main_surface, (255,0,0), (self.x[i]+8, self.y[i]+8), self.target_size)
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+16), self.target_size)
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+24), self.target_size)
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+32), self.target_size)
 
     def make_taiho(self):
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-10, self.y3-10,20,20))
