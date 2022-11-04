@@ -8,7 +8,7 @@ WIDTH  = 640        # 幅
 HEIGHT = 400        # 高さ
 
 WALL_COUNT = 2
-TARGET_COUNT = 10
+TARGET_COUNT = 6
 
 class top_app():
 
@@ -64,17 +64,10 @@ class top_app():
     def hit_check(self):
         for i in range(TARGET_COUNT):
             if(((self.bxt[i]>(self.x[i]-self.target_size-10))and(self.bxt[i]<(self.x[i]+self.target_size+10)))
-             and((self.byt[i]>(self.y[i]-4))and(self.byt[i]<(self.y[i]+4)))):
+             and((self.byt[i]>(self.y[i]-10))and(self.byt[i]<(self.y[i]+10)))):
                 self.hit[i]=1
 
 
-    def wall_out(self):
-        for j in range(WALL_COUNT):
-            for i in range(TARGET_COUNT):
-                if(((self.bxt[i]>(self.xk[j]))and(self.bxt[i]<(self.xk[j]+self.wall_size)))
-                and((self.byt[i]>(self.yk[j]))and(self.byt[i]<(self.yk[j]+10)))):
-                    self.stop=1
-                    self.khit=1
     
     def make_target(self):
         for i in range(TARGET_COUNT):
@@ -131,21 +124,21 @@ class top_app():
         #的移動
         for i in range(TARGET_COUNT):
             if(self.xstate[i]==0):
-                self.x[i] += (3 +self.hit_count+i)
+                self.x[i] += (1 +i)
                 if(self.x[i]>400):
                     self.xstate[i]=1
             if(self.xstate[i]==1):
-                self.x[i] -= (3 +self.hit_count+i)
+                self.x[i] -= (1 +i)
                 if(self.x[i]<150):
                     self.xstate[i]=0    
 
 
             if(self.ystate[i]==0):
-                self.y[i] += (2 +self.hit_count+i)
+                self.y[i] += (1 +i)
                 if(self.y[i]>300):
                     self.ystate[i]=1
             if(self.ystate[i]==1):
-                self.y[i] -= (2 +self.hit_count+i)
+                self.y[i] -= (1 +i)
                 if(self.y[i]<150):
                     self.ystate[i]=0    
         
