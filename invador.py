@@ -62,10 +62,11 @@ class top_app():
         sys.exit()
 
     def hit_check(self):
-        for i in range(TARGET_COUNT):
-            if(((self.bxt[i]>(self.x[i]-self.target_size-10))and(self.bxt[i]<(self.x[i]+self.target_size+10)))
-             and((self.byt[i]>(self.y[i]-10))and(self.byt[i]<(self.y[i]+10)))):
-                self.hit[i]=1
+        for j in range(10):
+            for i in range(TARGET_COUNT):
+                if(((self.bxt[j]>(self.x[i]-self.target_size-10))and(self.bxt[j]<(self.x[i]+self.target_size+10)))
+                and((self.byt[j]>(self.y[i]-10))and(self.byt[j]<(self.y[i]+10)))):
+                    self.hit[i]=1
 
     def all_hit(self):
         for i in range(TARGET_COUNT):
