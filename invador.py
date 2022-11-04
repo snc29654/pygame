@@ -81,15 +81,7 @@ class top_app():
                 pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+24), self.target_size)
                 pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+32), self.target_size)
             else:
-                pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i], self.y[i]), 0)
-                pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]-8, self.y[i]-8), 0)
-                pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]-8, self.y[i]+8), 0)
-                pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+8, self.y[i]-8), 0)
-                pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.x[i]+8, self.y[i]+8), 0)
-                pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+16), 0)
-                pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+24), 0)
-                pygame.draw.circle(self.main_surface, (0,0,0), (self.x[i], self.y[i]+32), 0)
-                
+                pass
                 
     def make_target_out(self):
         for i in range(TARGET_COUNT):
