@@ -8,7 +8,8 @@ WIDTH  = 640        # 幅
 HEIGHT = 400        # 高さ
 
 WALL_COUNT = 2
-TARGET_COUNT = 6
+BALL_COUNT = 10
+TARGET_COUNT = 10
 
 class top_app():
 
@@ -43,7 +44,7 @@ class top_app():
         self.ykstate=[0,1,2,3,4,5,6,7,8,9]
         self.scenario_state=0
 
-        for i in range(10):
+        for i in range(BALL_COUNT):
             self.bxt[i]=300
             self.byt[i]=400
             self.xk[i]=150
@@ -63,7 +64,7 @@ class top_app():
         sys.exit()
 
     def hit_check(self):
-        for j in range(10):
+        for j in range(BALL_COUNT):
             for i in range(TARGET_COUNT):
                 if(((self.bxt[j]>(self.x[i]-self.target_size-10))and(self.bxt[j]<(self.x[i]+self.target_size+10)))
                 and((self.byt[j]>(self.y[i]-10))and(self.byt[j]<(self.y[i]+10)))):
@@ -221,7 +222,7 @@ class top_app():
             if(self.stop==1):
                 pass
             else: 
-                for i in range(10):
+                for i in range(BALL_COUNT):
                     self.byt[i]-=10
     
                 #的移動
@@ -233,17 +234,19 @@ class top_app():
             #的 
 
             if(self.scenario_state==0):            
+                texthit = font.render("STAGE1", True, (0,0,0))
                 self.make_target()
                 if (self.all_hit()==1):
                     self.scenario_state = 1
-                    for i in range(10):
+                    for i in range(BALL_COUNT):
                        self.hit[i]=0
                     
             if(self.scenario_state==1):            
+                texthit = font.render("STAGE2", True, (0,0,0))
                 self.make_target2()
                 if (self.all_hit()==1):
                     self.scenario_state = 2
-                    for i in range(10):
+                    for i in range(BALL_COUNT):
                            self.hit[i]=0
             if(self.scenario_state==2):            
                 texthit = font.render("GAME CLEAR !", True, (0,0,0))
