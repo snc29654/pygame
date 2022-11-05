@@ -2,6 +2,7 @@ from pygame.locals import *
 import sys
 import pygame
 import random
+import time
 
 
 WIDTH  = 640        # 幅
@@ -43,7 +44,7 @@ class top_app():
         self.xkstate=[0,1,2,3,4,5,6,7,8,9]
         self.ykstate=[0,1,2,3,4,5,6,7,8,9]
         self.scenario_state=0
-
+        self.timeout=0
         for i in range(BALL_COUNT):
             self.bxt[i]=300
             self.byt[i]=400
@@ -157,9 +158,15 @@ class top_app():
         text3 = font.render("SHOOT", True, (0,0,0))
         text4 = font.render("CURSOL:SHOOTER MOVE /  SPACE ball start   ", True, (0,0,0))
         texthit = font.render("  ", True, (0,0,0))
+        start = time.time()
         
         going = True
         while going:
+
+            t = time.time() - start
+            if(t>10):
+                self.timeout=1
+
             pressed = pygame.key.get_pressed()
             if pressed[pygame.K_LEFT]:
                 #大砲移動　左
@@ -265,7 +272,9 @@ class top_app():
             self.main_surface.blit(text2, (40,145))
             self.main_surface.blit(text3, (40,245))
             self.main_surface.blit(text4, (40,430))
-                    
+            if(self.timeout==1):        
+                texthit = font.render("TIMEOUT!", True, (0,0,0))
+                self.stop=1                    
             if(self.khit==1):        
                 texthit = font.render("game over count="+str(self.hit_count), True, (0,0,0))
             else:
