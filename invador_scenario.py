@@ -190,7 +190,7 @@ class top_app():
         while going:
 
             t = time.time() - start
-            if(t>10):
+            if(t>15):
                 self.timeout=1
 
             pressed = pygame.key.get_pressed()
