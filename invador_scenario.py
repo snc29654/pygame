@@ -131,11 +131,11 @@ class top_app():
                 
 
 
-    def make_taiho(self):
+    def make_gun(self):
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-10, self.y3-10,20,20))
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-25, self.y3,50,20))
 
-    def make_tama(self):
+    def make_ball(self):
         for i in range(TARGET_COUNT):
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.bxt[i], self.byt[i]), 10)
     
@@ -291,10 +291,10 @@ class top_app():
             self.wall_move()     
                 
             #玉             
-            self.make_tama()
+            self.make_ball()
                 
             #大砲             
-            self.make_taiho()
+            self.make_gun()
     
     
             self.main_surface.blit(text1, (40, 45))
