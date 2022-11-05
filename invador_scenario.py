@@ -92,6 +92,10 @@ class top_app():
         return 1
 
     def make_active(self):
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+10, self.y_act-10,10,10))
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+20, self.y_act-20,10,10))
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+20, self.y_act-10,10,10))
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+30, self.y_act-10,10,10))
         pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act, self.y_act,50,10))
             
     def make_target(self):
