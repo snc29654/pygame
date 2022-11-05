@@ -34,11 +34,10 @@ class top_app():
         self.kstate = 0
         self.xstate=[0,1,2,3,4,5,6,7,8,9]
         self.ystate=[0,1,2,3,4,5,6,7,8,9]
-        self.x_act=100
-        self.y_act=100
-        self.xact_state=0
-        self.yact_state=0
-        self.act_hit = 0
+        self.x_wall=100
+        self.y_wall=100
+        self.xwall_state=0
+        self.wall_hit = 0
 
         self.bxt=[0,1,2,3,4,5,6,7,8,9]
         self.byt=[0,1,2,3,4,5,6,7,8,9]
@@ -76,11 +75,11 @@ class top_app():
                 and((self.byt[j]>(self.y[i]-10))and(self.byt[j]<(self.y[i]+10)))):
                     self.hit[i]=1
 
-    def act_col_check(self):
+    def wall_col_check(self):
         for j in range(BALL_COUNT):
-            if(((self.bxt[j]>(self.x_act-self.target_size))and(self.bxt[j]<(self.x_act+self.target_size+50)))
-                and((self.byt[j]>(self.y_act-10))and(self.byt[j]<(self.y_act+10)))):
-               self.act_hit = 1
+            if(((self.bxt[j]>(self.x_wall-self.target_size))and(self.bxt[j]<(self.x_wall+self.target_size+50)))
+                and((self.byt[j]>(self.y_wall-10))and(self.byt[j]<(self.y_wall+10)))):
+               self.wall_hit = 1
 
 
     def all_hit(self):
@@ -91,12 +90,12 @@ class top_app():
                 pass
         return 1
 
-    def make_active(self):
-        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+10, self.y_act-10,10,10))
-        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+20, self.y_act-20,10,10))
-        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+20, self.y_act-10,10,10))
-        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act+30, self.y_act-10,10,10))
-        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_act, self.y_act,50,10))
+    def make_wall(self):
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_wall+10, self.y_wall-10,10,10))
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_wall+20, self.y_wall-20,10,10))
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_wall+20, self.y_wall-10,10,10))
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_wall+30, self.y_wall-10,10,10))
+        pygame.draw.rect(self.main_surface, (100,0,255), (self.x_wall, self.y_wall,50,10))
             
     def make_target(self):
         for i in range(TARGET_COUNT):
@@ -163,16 +162,15 @@ class top_app():
                 if(self.y[i]<150):
                     self.ystate[i]=0    
         
-    def active_move(self):
-        for i in range(WALL_COUNT):
-            if(self.xact_state ==0):
-                self.x_act += (1)
-                if(self.x_act>400):
-                    self.xact_state=1
-            if(self.xact_state==1):
-                  self.x_act -= (1)
-                  if(self.x_act<150):
-                    self.xact_state=0    
+    def wall_move(self):
+        if(self.xwall_state ==0):
+            self.x_wall += (1+self.scenario_state)
+            if(self.x_wall>400):
+                self.xwall_state=1
+        if(self.xwall_state==1):
+            self.x_wall -= (1+self.scenario_state)
+            if(self.x_wall<150):
+                self.xwall_state=0    
 
 
 
@@ -245,7 +243,7 @@ class top_app():
     
             #的衝突 
             self.hit_check()            
-            self.act_col_check()    
+            self.wall_col_check()    
     
             self.main_surface.fill((220, 220, 220))
             pygame.draw.rect(self.main_surface, (255, 0, 0), stop_button)
@@ -289,8 +287,8 @@ class top_app():
                 texthit = font.render("GAME CLEAR !", True, (0,0,0))
                 self.stop=1                            
                     
-            self.make_active()     
-            self.active_move()     
+            self.make_wall()     
+            self.wall_move()     
                 
             #玉             
             self.make_tama()
@@ -303,12 +301,12 @@ class top_app():
             self.main_surface.blit(text2, (40,145))
             self.main_surface.blit(text3, (40,245))
             self.main_surface.blit(text4, (40,430))
-            if(self.act_hit==1):        
-                texthit = font.render("WALL HIT GAME OVER!", True, (0,0,0))
+            if(self.wall_hit==1):        
+                texthit = font.render("WALL HIT GAME OVER!", True, (255,0,0))
                 self.stop=1                    
             
             if(self.timeout==1):        
-                texthit = font.render("TIMEOUT!", True, (0,0,0))
+                texthit = font.render("TIMEOUT!", True, (255,0,0))
                 self.stop=1                    
             if(self.khit==1):        
                 texthit = font.render("game over count="+str(self.hit_count), True, (0,0,0))
