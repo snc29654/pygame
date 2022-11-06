@@ -45,6 +45,8 @@ class top_app():
         self.yk=[0,1,2,3,4,5,6,7,8,9]
         self.x=[0,1,2,3,4,5,6,7,8,9]
         self.y=[0,1,2,3,4,5,6,7,8,9]
+        self.dummy_x=[0,1,2,3,4,5,6,7,8,9]
+        self.dummy_y=[0,1,2,3,4,5,6,7,8,9]
         self.xkstate=[0,1,2,3,4,5,6,7,8,9]
         self.ykstate=[0,1,2,3,4,5,6,7,8,9]
         self.scenario_state=0
@@ -56,11 +58,17 @@ class top_app():
             self.yk[i]=30
             self.x[i]=150
             self.y[i]=30
+            self.dummy_x[i]=150
+            self.dummy_y[i]=100
             self.xkstate[i]=0    
             self.ykstate[i]=0    
             self.xstate[i]=0    
             self.ystate[i]=0    
             self.hit[i]=0
+            self.dummy_x[i]=self.x_wall
+            self.dummy_y[i]=self.y_wall
+
+
     def main(self):
         
         self.game_loop()
@@ -130,6 +138,11 @@ class top_app():
                 pass
                 
 
+    def make_dummy(self):
+        for i in range(TARGET_COUNT):
+            pygame.draw.circle(self.main_surface, (255,0,0), (self.dummy_x[i]+25, self.dummy_y[i]), self.target_size)
+            pygame.draw.circle(self.main_surface, (0,0,0), (self.dummy_x[i]+25, self.dummy_y[i]+8), self.target_size)
+                
 
     def make_gun(self):
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-10, self.y3-10,20,20))
@@ -160,7 +173,21 @@ class top_app():
             if(self.ystate[i]==1):
                 self.y[i] -= (1 +i)
                 if(self.y[i]<150):
-                    self.ystate[i]=0    
+                    self.ystate[i]=0 
+                       
+    def dummy_move(self):
+        for i in range(TARGET_COUNT):
+            if(self.xstate[i]==0):
+                self.dummy_x[i] += (1 +i)
+            if(self.xstate[i]==1):
+                self.dummy_x[i] -= (1 +i)
+
+
+            if(self.ystate[i]==0):
+                self.dummy_y[i] += (2+ i)
+            if(self.ystate[i]==1):
+                self.dummy_y[i] -= (2+ i )
+    
         
     def wall_move(self):
         if(self.xwall_state ==0):
@@ -296,7 +323,11 @@ class top_app():
             #大砲             
             self.make_gun()
     
-    
+            self.make_dummy()
+            self.dummy_move()
+            
+            
+                
             self.main_surface.blit(text1, (40, 45))
             self.main_surface.blit(text2, (40,145))
             self.main_surface.blit(text3, (40,245))
