@@ -154,6 +154,10 @@ class top_app():
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-10, self.y3-10,20,20))
         pygame.draw.rect(self.main_surface, (255,0,255), (self.x3-25, self.y3,50,20))
 
+    def make_gun_out(self):
+        pygame.draw.rect(self.main_surface, (200,200,200), (self.x3-10, self.y3-10,20,20))
+        pygame.draw.rect(self.main_surface, (200,200,200), (self.x3-25, self.y3,50,20))
+
     def make_ball(self):
         for i in range(TARGET_COUNT):
             pygame.draw.circle(self.main_surface, (random.randint(0,255),random.randint(0,255),random.randint(0,255)), (self.bxt[i], self.byt[i]), 10)
@@ -339,6 +343,7 @@ class top_app():
             self.main_surface.blit(text3, (40,245))
             self.main_surface.blit(text4, (40,430))
             if(self.dummy_hit==1):        
+                self.make_gun_out()
                 texthit = font.render("BALL HIT TO GUN GAME OVER!", True, (255,0,0))
                 self.stop=1                    
             if(self.wall_hit==1):        
