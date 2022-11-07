@@ -336,8 +336,7 @@ class top_app():
             #大砲             
             self.make_gun()
             self.make_dummy()
-            if((self.loop_count%2)==0):
-                self.dummy_move()
+            self.dummy_move()
             
             
                 
