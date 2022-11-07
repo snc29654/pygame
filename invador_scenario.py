@@ -339,7 +339,7 @@ class top_app():
             self.main_surface.blit(text3, (40,245))
             self.main_surface.blit(text4, (40,430))
             if(self.dummy_hit==1):        
-                texthit = font.render("TARGET BALL HIT TO GUN GAME OVER!", True, (255,0,0))
+                texthit = font.render("BALL HIT TO GUN GAME OVER!", True, (255,0,0))
                 self.stop=1                    
             if(self.wall_hit==1):        
                 texthit = font.render("WALL HIT GAME OVER!", True, (255,0,0))
