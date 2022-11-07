@@ -282,7 +282,7 @@ class top_app():
     
             #的衝突 
             self.hit_check()            
-            self.wall_col_check()    
+            #self.wall_col_check()    
             self.dummy_col_check()    
     
             self.main_surface.fill((220, 220, 220))
