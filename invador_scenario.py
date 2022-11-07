@@ -52,6 +52,9 @@ class top_app():
         self.ykstate=[0,1,2,3,4,5,6,7,8,9]
         self.scenario_state=0
         self.timeout=0
+
+        self.loop_count=0
+
         for i in range(BALL_COUNT):
             self.bxt[i]=300
             self.byt[i]=400
@@ -332,9 +335,9 @@ class top_app():
                 
             #大砲             
             self.make_gun()
-    
             self.make_dummy()
-            self.dummy_move()
+            if((self.loop_count%2)==0):
+                self.dummy_move()
             
             
                 
@@ -360,6 +363,7 @@ class top_app():
             self.main_surface.blit(texthit, (200,45))
             pygame.display.update()
             clock.tick(50)
+            self.loop_count+=1
 if __name__ == '__main__':
     app = top_app()
     app.main()
