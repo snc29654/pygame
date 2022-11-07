@@ -38,6 +38,7 @@ class top_app():
         self.y_wall=100
         self.xwall_state=0
         self.wall_hit = 0
+        self.dummy_hit = 0
 
         self.bxt=[0,1,2,3,4,5,6,7,8,9]
         self.byt=[0,1,2,3,4,5,6,7,8,9]
@@ -89,6 +90,11 @@ class top_app():
                 and((self.byt[j]>(self.y_wall-10))and(self.byt[j]<(self.y_wall+10)))):
                self.wall_hit = 1
 
+    def dummy_col_check(self):
+        for j in range(BALL_COUNT):
+            if(((self.dummy_x[j]>(self.x3-50))and(self.dummy_x[j]<(self.x3)))
+                and((self.dummy_y[j]>(400-10))and(self.dummy_y[j]<(400+10)))):
+               self.dummy_hit = 1
 
     def all_hit(self):
         for i in range(TARGET_COUNT):
@@ -177,17 +183,16 @@ class top_app():
                        
     def dummy_move(self):
         for i in range(TARGET_COUNT):
-            if(self.xstate[i]==0):
-                self.dummy_x[i] += (1 +i)
-            if(self.xstate[i]==1):
-                self.dummy_x[i] -= (1 +i)
 
+            if(self.xwall_state ==0):
+                self.dummy_x[i] += (1+self.scenario_state)
+            if(self.xwall_state==1):
+                self.dummy_x[i] -= (1+self.scenario_state)
 
-            if(self.ystate[i]==0):
-                self.dummy_y[i] += (2+ i)
-            if(self.ystate[i]==1):
-                self.dummy_y[i] -= (2+ i )
-    
+            
+            self.dummy_y[i] += (10)
+            if(self.dummy_y[i] >400):
+                self.dummy_y[i]=100
         
     def wall_move(self):
         if(self.xwall_state ==0):
@@ -245,7 +250,7 @@ class top_app():
                        #大砲移動　右
                         self.x3=self.x3+10        
                     if event.key == K_SPACE:
-                        #玉発射
+                        #弾発射
                         self.bxt[self.xy0state]=self.x3
                         self.byt[self.xy0state]=400
                         self.xy0state += 1
@@ -260,7 +265,7 @@ class top_app():
                     if start_button.collidepoint(event.pos):
                         self.stop=0
                     if reset_button.collidepoint(event.pos):
-                        #玉発射
+                        #弾発射
                         self.bxt[self.xy0state]=self.x3
                         self.byt[self.xy0state]=400
                         self.xy0state += 1
@@ -271,6 +276,7 @@ class top_app():
             #的衝突 
             self.hit_check()            
             self.wall_col_check()    
+            self.dummy_col_check()    
     
             self.main_surface.fill((220, 220, 220))
             pygame.draw.rect(self.main_surface, (255, 0, 0), stop_button)
@@ -317,7 +323,7 @@ class top_app():
             self.make_wall()     
             self.wall_move()     
                 
-            #玉             
+            #弾             
             self.make_ball()
                 
             #大砲             
@@ -332,6 +338,9 @@ class top_app():
             self.main_surface.blit(text2, (40,145))
             self.main_surface.blit(text3, (40,245))
             self.main_surface.blit(text4, (40,430))
+            if(self.dummy_hit==1):        
+                texthit = font.render("TARGET BALL HIT TO GUN GAME OVER!", True, (255,0,0))
+                self.stop=1                    
             if(self.wall_hit==1):        
                 texthit = font.render("WALL HIT GAME OVER!", True, (255,0,0))
                 self.stop=1                    
