@@ -28,7 +28,7 @@ class top_app():
         self.khit=0
         self.state = 0
         self.hit_count=0
-        self.stop=0
+        self.stop=1
         self.hit=[0,1,2,3,4,5,6,7,8,9]
         self.state = 0
         self.kstate = 0
@@ -324,7 +324,9 @@ class top_app():
         
         going = True
         while going:
-
+            if (self.stop==1):
+                start = time.time()
+                
             t = time.time() - start
             if(t>15):
                 self.timeout=1
@@ -398,6 +400,16 @@ class top_app():
                 #的移動
                 self.target_move()	    
     
+                self.make_wall()     
+                self.wall_move()     
+                
+                #弾             
+                self.make_ball()
+                
+                #大砲             
+                self.make_gun()
+                self.make_dummy()
+                self.dummy_move()
     
                         
                         
@@ -422,16 +434,6 @@ class top_app():
                 texthit = font.render("GAME CLEAR !", True, (0,0,0))
                 self.stop=1                            
                     
-            self.make_wall()     
-            self.wall_move()     
-                
-            #弾             
-            self.make_ball()
-                
-            #大砲             
-            self.make_gun()
-            self.make_dummy()
-            self.dummy_move()
             
             
                 
