@@ -91,8 +91,8 @@ class top_app():
         self.main_surface = pygame.display.set_mode((WIDTH,HEIGHT)) 
         self.img1 = pygame.transform.rotozoom(pygame.image.load(filenames[0]).convert(), 0, 0.1)
         self.img1 = pygame.transform.rotozoom(self.img1, 0, 0.5)
-        self.img2 = pygame.transform.rotozoom(pygame.image.load("tombo2.jpg").convert(), 0, 0.1)
-        self.img2 = pygame.transform.rotozoom(self.img2, 0, 2)
+        self.img2 = pygame.transform.rotozoom(pygame.image.load(filenames[0]).convert(), 0, 0.1)
+        self.img2 = pygame.transform.rotozoom(self.img2, 0, 0.2)
         self.by0 =400
         self.by1 =400
         self.by2 =400
