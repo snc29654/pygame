@@ -351,9 +351,9 @@ class top_app():
                         self.stop=0
     
             #的衝突 
-            self.hit_check()            
+            #self.hit_check()            
             #self.wall_col_check()    
-            self.dummy_col_check()      
+            #self.dummy_col_check()      
     
             self.main_surface.fill((220, 220, 220))
             pygame.draw.rect(self.main_surface, (255, 0, 0), stop_button)
