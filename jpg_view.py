@@ -132,7 +132,7 @@ class top_app():
 
         self.loop_count=0
 
-
+        self.jpg_size=3.0
 
 
 
@@ -200,7 +200,7 @@ class top_app():
         
     def make_target_jpg1(self):
         self.img1 = pygame.transform.rotozoom(pygame.image.load(filenames[self.file_no]).convert(), 0, 0.1)
-        self.img1 = pygame.transform.rotozoom(self.img1, 0, 3.0)
+        self.img1 = pygame.transform.rotozoom(self.img1, 0, self.jpg_size)
         for i in range(TARGET_COUNT):
             if(self.hit[i]==0):
                 self.main_surface.blit(self.img1, (self.x[i], self.y[i]))
@@ -306,9 +306,13 @@ class top_app():
             if pressed[pygame.K_LEFT]:
                 #大砲移動　左
                 self.x3=self.x3-10        
+                if(self.jpg_size > 0.1):
+                    self.jpg_size -= 0.1
             if pressed[pygame.K_RIGHT]:
                 #大砲移動　右
-                self.x3=self.x3+10        
+                self.x3=self.x3+10  
+                      
+                self.jpg_size += 0.1
     
     
             for event in pygame.event.get():
