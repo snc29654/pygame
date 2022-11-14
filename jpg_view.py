@@ -289,7 +289,7 @@ class top_app():
         text1 = font.render("STOP", True, (0,0,0))
         text2 = font.render("START", True, (0,0,0))
         text3 = font.render(" ", True, (0,0,0))
-        text4 = font.render(" ", True, (0,0,0))
+        text4 = font.render("SPACE:start      ->:NEXT  <-:PREV  ^:LARGE v:small ", True, (0,0,0))
         texthit = font.render("  ", True, (0,0,0))
         start = time.time()
         
@@ -421,7 +421,7 @@ class top_app():
             self.main_surface.blit(text1, (40, 45))
             self.main_surface.blit(text2, (40,145))
             #self.main_surface.blit(text3, (40,245))
-            #self.main_surface.blit(text4, (40,430))
+            self.main_surface.blit(text4, (40,10))
             if(self.dummy_hit==1):        
                 self.make_gun_out()
                 texthit = font.render(" ", True, (255,0,0))
