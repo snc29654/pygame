@@ -303,16 +303,18 @@ class top_app():
                 self.timeout=1
 
             pressed = pygame.key.get_pressed()
+            if pressed[pygame.K_UP]:
+                self.jpg_size += 0.1
+            if pressed[pygame.K_DOWN]:
+                if(self.jpg_size > 0.1):
+                    self.jpg_size -= 0.1
             if pressed[pygame.K_LEFT]:
                 #大砲移動　左
                 self.x3=self.x3-10        
-                if(self.jpg_size > 0.1):
-                    self.jpg_size -= 0.1
             if pressed[pygame.K_RIGHT]:
                 #大砲移動　右
                 self.x3=self.x3+10  
                       
-                self.jpg_size += 0.1
     
     
             for event in pygame.event.get():
@@ -324,13 +326,15 @@ class top_app():
                 if event.type == KEYDOWN:
                     if event.key == K_LEFT:
                        #大砲移動　左
+                        if(self.file_no > 0):   
+                            self.file_no -= 1
                         self.x3=self.x3-10        
                     if event.key == K_RIGHT:
                        #大砲移動　右
                         self.x3=self.x3+10        
+                        self.file_no += 1
                     if event.key == K_SPACE:
                         #弾発射
-                        self.file_no += 1
 
                         self.bxt[self.xy0state]=self.x3
                         self.byt[self.xy0state]=400
